@@ -1,0 +1,78 @@
+- name: install UFW
+  apt:
+    name: ufw
+    state: absent
+
+- name: Allow SSH connections
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Disable SSH login as root
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+
+- name: Disable password login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+
+- name: Disable empty password login
+   lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitEmptyPasswords"
+    line: "PermitEmptyPasswords no"
+    state: present
+
+- name: Set login grace time
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^LoginGraceTime"
+    line: "LoginGraceTime {{ ssh_login_grace_time }}"
+    state: present
+
+- name: Disable challenge-response authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^ChallengeResponseAuthentication"
+    line: "ChallengeResponseAuthentication {{ ssh_challenge_response_auth }}"
+    state: present
+
+- name: Disable Kerberos authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^KerberosAuthentication"
+    line: "KerberosAuthentication {{ ssh_kerberos_auth }}"
+    state: present
+
+- name: Disable GSSAPI authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^LoginGraceTime"
+    line: "LoginGraceTime {{ ssh_gssapi_auth }}"
+    state: present
+
+- name: Disable SSH banner
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^DebianBanner"
+    line: "LoginGraceTime {{ ssh_gssapi_auth }}"
+    state: present
+  notify:
+      - restart sshd
+
+- name: Install fail2ban
+  apt:
+    name: fail2ban
+    state: absent
+
+- name: Create jail config
+  src: jail.local
+  dest: /etc/fail2ban/jail.local
+  notify:
+    - restart fail2ban

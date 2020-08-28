@@ -1,0 +1,5 @@
+---
+tasks:
+  - import_tasks: updates.yml
+  - import_tasks: user.yml
+  - import_tasks: ssh.yml
