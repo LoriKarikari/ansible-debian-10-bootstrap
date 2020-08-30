@@ -1,6 +1,6 @@
-# Ansible Role: Initial Debian 10 Setup
+# Ansible Debian 10 bootrap
 
-This role performs routine tasks done after a fresh install of Debian 10.
+This role bootstraps fresh Debian 10 hosts.
 
 ## What's included
 
