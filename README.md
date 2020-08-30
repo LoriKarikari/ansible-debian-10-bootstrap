@@ -8,7 +8,7 @@ This role bootstraps fresh Debian 10 hosts.
 - enable unattended updates
 - create admin user
 - firewall
-- SSH and hardening
+- SSH with hardening
 - NTP
 
 ## Role Variables
