@@ -1,10 +1,14 @@
-# Initial Debian setup
+# Ansible Role: Initial Debian 10 Setup
+
+This role performs routine tasks done after a fresh install of Debian 10.
+
+## What's included
 
 - update and upgrade packages
 - enable unattended updates
-- create sudo user
+- create admin user
 - firewall
-- SSH hardening
+- SSH and hardening
 - NTP
 
 ## Role Variables
