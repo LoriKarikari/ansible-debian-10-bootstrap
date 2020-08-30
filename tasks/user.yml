@@ -3,7 +3,7 @@
   user:
     name: '{{ admin_user }}'
     append: yes
-    createhome: yes
+    create_home: yes
     shell: /bin/bash
     state: present
     groups: sudo
