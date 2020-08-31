@@ -1,4 +1,4 @@
-# Ansible Debian 10 bootrap
+# Ansible Debian 10 bootstrap
 
 This role bootstraps fresh Debian 10 hosts.
 
@@ -10,6 +10,7 @@ This role bootstraps fresh Debian 10 hosts.
 - firewall
 - SSH with hardening
 - NTP
+- packages: Vim, gotop
 
 ## Role Variables
 
